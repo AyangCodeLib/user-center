@@ -9,7 +9,7 @@ import { stringify } from 'querystring';
 const request = extend({
   // 默认请求是否带上cookie
   credentials: 'include',
-  prefix: process.env.NODE_ENV === 'production' ? 'http://user-center.ayangwebsite.cn' : undefined,
+  // prefix: process.env.NODE_ENV === 'production' ? 'http://user-center.ayangwebsite.cn' : undefined,
 });
 
 /**
@@ -27,11 +27,8 @@ request.interceptors.request.use((url, options): any => {
 });
 
 request.interceptors.response.use(async (response, options): Promise<any> => {
-  console.log(response);
   const res = await response.clone().json();
-  if (response.ok) {
-    return res.data;
-  } else {
+  if (!response.ok) {
     // 错误
     if (res.code === 40100) {
       message.error('请先登录');
@@ -42,9 +39,10 @@ request.interceptors.response.use(async (response, options): Promise<any> => {
         }),
       });
     } else {
-      message.error(res.description);
+      message.error(res.message);
     }
   }
+  return res.data;
 });
 
 export default request;
