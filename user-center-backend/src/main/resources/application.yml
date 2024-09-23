@@ -1,0 +1,24 @@
+server:
+  port: 9081
+  servlet:
+    context-path: /api
+# DataSource Config
+spring:
+  application:
+    name: user-center
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/ayang_website
+  # session 失效时间 1天
+  session:
+    timeout: 86400
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
