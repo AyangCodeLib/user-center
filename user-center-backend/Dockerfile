@@ -1,9 +1,8 @@
-FROM maven:3.9-jdk-8-alpine as builder
+FROM java:8
+MAINTAINER ayang
 
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+ADD user-center-backend-0.0.1-SNAPSHOT.jar user-center-backend.jar
+EXPOSE 9081
 
-RUN mvn package -DskipTests
-
-CMD ["java","-jar","/app/target/user-center-backend-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
+ENTRYPOINT  ["java","-jar","user-center-backend.jar", "--spring.profiles.active=prod"]
