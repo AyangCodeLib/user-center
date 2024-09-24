@@ -9,9 +9,9 @@ import com.ayang.usercenter.common.ErrorCode;
  **/
 public class ThrowUtil {
 
-	public static void throwIf(boolean isThrow, ErrorCode errorCode, String description) {
+	public static void throwIf(boolean isThrow, ErrorCode errorCode, String message) {
 		if (isThrow) {
-			throw new BusinessException(errorCode, description);
+			throw new BusinessException(errorCode, message);
 		}
 	}
 

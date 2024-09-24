@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
 	public BaseResponse businessExceptionHandler(HttpServletResponse response, BusinessException e) {
 		log.error("BusinessException: {}", e.getMessage(), e);
 		response.setStatus(HttpStatus.BAD_REQUEST.value());
-		return ResultUtils.error(e.getCode(), e.getMessage(), e.getDescription());
+		return ResultUtils.error(e.getCode(), e.getMessage());
 	}
 
 	@ExceptionHandler(RuntimeException.class)

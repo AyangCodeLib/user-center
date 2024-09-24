@@ -52,7 +52,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 	 * @param checkCode
 	 */
 	private void verifyUser(String userAccount, String userPassword, String checkPassword, String checkCode) {
-		ThrowUtil.throwIf(StringUtils.isAnyBlank(userAccount, userPassword, checkPassword, checkCode), ErrorCode.PARAMS_ERROR, "参数为空");
 		ThrowUtil.throwIf(userAccount.length() < 4 || userAccount.length() > 16, ErrorCode.PARAMS_ERROR, "用户账号长度应大于4，小于16");
 		ThrowUtil.throwIf(userPassword.length() < 8 || userPassword.length() > 30, ErrorCode.PARAMS_ERROR, "用户密码长度应大于8，小于30");
 		// 校验账户不能包含特殊字符
@@ -63,6 +62,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 	@Override
 	public Long userRegister(String userAccount, String userPassword, String checkPassword, String checkCode) {
 		// 1. 校验
+		ThrowUtil.throwIf(StringUtils.isAnyBlank(userAccount, userPassword, checkPassword, checkCode), ErrorCode.PARAMS_ERROR, "参数为空");
 		verifyUser(userAccount, userPassword, checkPassword, checkCode);
 		// 密码长度
 		ThrowUtil.throwIf(checkPassword.length() < 8 || checkPassword.length() > 30, ErrorCode.PARAMS_ERROR, "校验密码长度应大于8，小于30");
@@ -92,6 +92,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 	@Override
 	public User userLogin(String userAccount, String userPassword, HttpServletRequest request) {
 		// 1. 校验
+		ThrowUtil.throwIf(StringUtils.isAnyBlank(userAccount, userPassword), ErrorCode.PARAMS_ERROR, "参数为空");
 		verifyUser(userAccount, userPassword, null, null);
 		// 2. 校验账户是否存在
 		User user = this.lambdaQuery().eq(User::getUserAccount, userAccount).one();
@@ -146,6 +147,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 		if (userObj instanceof User) {
 			User user = (User) userObj;
 			ThrowUtil.throwIf(user.getRole() != UserConstant.ADMIN_ROLE, ErrorCode.NO_AUTH, "无管理员权限");
+			return;
 		}
 		throw new BusinessException(ErrorCode.NO_AUTH, "无管理员权限");
 	}

@@ -50,6 +50,6 @@ public class BaseResponse implements Serializable {
 	}
 
 	public BaseResponse(ErrorCode errorCode) {
-		this(errorCode.getCode(), null, errorCode.getMessage(), errorCode.getDescription());
+		this(errorCode.getCode(), null, errorCode.getMessage());
 	}
 }

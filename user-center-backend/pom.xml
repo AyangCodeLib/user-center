@@ -110,7 +110,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.ayang.usercenter.UserCenterApplication</mainClass>
-                    <skip>true</skip>
+<!--                    <skip>true</skip>-->
                 </configuration>
                 <executions>
                     <execution>

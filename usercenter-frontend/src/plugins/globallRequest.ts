@@ -9,7 +9,7 @@ import { stringify } from 'querystring';
 const request = extend({
   // 默认请求是否带上cookie
   credentials: 'include',
-  // prefix: process.env.NODE_ENV === 'production' ? 'http://user-center.ayangwebsite.cn' : undefined,
+  prefix: process.env.NODE_ENV === 'production' ? 'http://user-center.ayangwebsite.cn' : undefined,
 });
 
 /**
