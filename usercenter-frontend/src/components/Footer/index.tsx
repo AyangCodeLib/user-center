@@ -24,6 +24,12 @@ const Footer: React.FC = () => {
           href: 'https://github.com/AyangCodeLib',
           blankTarget: true,
         },
+        {
+          key: 'codeNav',
+          title: '鲁ICP备2024067990号-1',
+          href: 'https://beian.miit.gov.cn',
+          blankTarget: true,
+        },
       ]}
     />
   );
