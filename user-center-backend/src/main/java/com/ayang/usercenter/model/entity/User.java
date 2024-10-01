@@ -72,10 +72,10 @@ public class User implements Serializable {
 	private Integer userStatus;
 
 	/**
-	 * 角色（0：普通用户，1：管理员）
+	 * 角色（user/admin/ban）
 	 */
-	@TableField(value = "role")
-	private Integer role;
+	@TableField(value = "user_role")
+	private String userRole;
 
 	/**
 	 * 校验编码

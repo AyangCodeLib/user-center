@@ -1,22 +1,15 @@
 package com.ayang.usercenter.controller;
 
+import com.ayang.usercenter.annotaion.AuthCheck;
 import com.ayang.usercenter.common.BaseResponse;
-import com.ayang.usercenter.common.ErrorCode;
 import com.ayang.usercenter.common.ResultUtils;
 import com.ayang.usercenter.constant.UserConstant;
-import com.ayang.usercenter.exception.BusinessException;
-import com.ayang.usercenter.exception.ThrowUtil;
-import com.ayang.usercenter.model.dto.UserLoginRequest;
-import com.ayang.usercenter.model.dto.UserRegisterRequest;
-import com.ayang.usercenter.model.entity.User;
 import com.ayang.usercenter.service.UserCheckCodeService;
-import com.ayang.usercenter.service.UserService;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author 阿洋努力学习
@@ -27,22 +20,18 @@ import java.util.List;
 @RequestMapping("/userCheckCode")
 public class UserCheckCodeController {
 
-	@Resource
-	private UserService userService;
-	@Resource
-	private UserCheckCodeService userCheckCodeService;
+    @Resource
+    private UserCheckCodeService userCheckCodeService;
 
-	/**
-	 * 用户注册
-	 *
-	 * @param request
-	 * @return 邀请码
-	 */
-	@PostMapping("/register")
-	public BaseResponse userRegister(HttpServletRequest request) {
-		// 鉴权 仅管理员可查询
-		userService.isAdmin(request);
-		String checkCode = userCheckCodeService.createCheckCode();
-		return ResultUtils.success(checkCode);
-	}
+    /**
+     * 用户注册
+     *
+     * @return 邀请码
+     */
+    @PostMapping("/register")
+//    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse userRegister() {
+        String checkCode = userCheckCodeService.createCheckCode();
+        return ResultUtils.success(checkCode);
+    }
 }

@@ -24,6 +24,10 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!--密码加密-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -110,7 +114,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.ayang.usercenter.UserCenterApplication</mainClass>
-<!--                    <skip>true</skip>-->
+                    <!--                    <skip>true</skip>-->
                 </configuration>
                 <executions>
                     <execution>

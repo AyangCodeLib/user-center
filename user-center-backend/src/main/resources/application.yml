@@ -10,7 +10,7 @@ spring:
   session:
     timeout: 86400
   profiles:
-    active: prod
+    active: dev
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
