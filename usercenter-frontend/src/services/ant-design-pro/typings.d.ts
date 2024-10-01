@@ -11,7 +11,7 @@ declare namespace API {
     phone?: string;
     email?: string;
     userStatus: string;
-    role: number;
+    userRole: string;
     checkCode?: string;
     createTime: Date;
   };

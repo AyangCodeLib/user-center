@@ -13,6 +13,7 @@ import com.ayang.usercenter.model.entity.User;
 import com.ayang.usercenter.model.enums.UserRoleEnum;
 import com.ayang.usercenter.service.UserCheckCodeService;
 import com.ayang.usercenter.service.UserService;
+import com.ayang.usercenter.utils.GenerateUtil;
 import com.ayang.usercenter.utils.SqlUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
@@ -89,6 +90,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String encodedPassword = bCryptPasswordEncoder.encode(userPassword);
         // 3. 插入数据
         User user = new User();
+        user.setUserName(GenerateUtil.generateUserName());
         user.setUserAccount(userAccount);
         user.setUserPassword(encodedPassword);
         user.setCheckCode(checkCode);
@@ -205,6 +207,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 3. 插入数据
         User user = new User();
         BeanUtils.copyProperties(userAddRequest, user);
+        user.setUserName(GenerateUtil.generateUserName());
         user.setUserPassword(encodedPassword);
         this.save(user);
         return user.getId();

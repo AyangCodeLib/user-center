@@ -65,7 +65,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const { currentUser } = initialState;
 
-  if (!currentUser || !currentUser.userName) {
+  if (!currentUser) {
     return loading;
   }
 
@@ -110,7 +110,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
           }
           alt="avatarUrl"
         />
-        <span className={`${styles.name} anticon`}>{currentUser.userName}</span>
+        <span className={`${styles.name} anticon`}>{currentUser.userName || '未设置用户名'}</span>
       </span>
     </HeaderDropdown>
   );
